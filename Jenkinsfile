@@ -33,7 +33,12 @@ pipeline {
             steps {
                 script {
                     echo 'Limpiando contenedores y imágenes...'
-                    bat 'docker rm -f sicei-app' 
+                   def containerId = bat(script: 'docker ps -q --filter "name=sicei-app"', returnStdout: true).trim()
+                    if (containerId) {
+                        bat "docker rm -f ${containerId}"
+                    } else {
+                        echo 'No se encontró el contenedor en ejecución.'
+                    }
                     bat 'docker rmi -f sicei-app'
                 }
             }

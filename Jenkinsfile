@@ -15,7 +15,7 @@ pipeline {
             steps {
                 script {
                     echo 'Ejecutando el contenedor Docker...'
-                    bat 'docker run -d -p 3000:3000 sicei-app'
+                    bat 'docker run -d -p 3000:3000 --name sicei-app sicei-app'
                 }
             }
         }
@@ -33,12 +33,8 @@ pipeline {
             steps {
                 script {
                     echo 'Limpiando contenedores y imágenes...'
-                   def containerId = bat(script: 'docker ps -q --filter "name=sicei-app"', returnStdout: true).trim()
-                    if (containerId) {
-                        bat "docker rm -f ${containerId}"
-                    } else {
-                        echo 'No se encontró el contenedor en ejecución.'
-                    }
+                    bat 'docker stop sicei-app || exit 0'
+                    bat 'docker rm -f sicei-app-container'
                     bat 'docker rmi -f sicei-app'
                 }
             }

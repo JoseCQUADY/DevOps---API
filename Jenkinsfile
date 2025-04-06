@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     echo 'Construyendo la imagen Docker...'
-                    sh 'docker build -t sicei-app .'
+                    bat 'docker build -t sicei-app .'
                 }
             }
         }

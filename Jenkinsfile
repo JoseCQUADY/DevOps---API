@@ -34,7 +34,7 @@ pipeline {
                 script {
                     echo 'Limpiando contenedores y imágenes...'
                     bat 'docker stop sicei-app || exit 0'
-                    bat 'docker rm -f sicei-app-container'
+                    bat 'docker rm -f sicei-app'
                     bat 'docker rmi -f sicei-app'
                 }
             }

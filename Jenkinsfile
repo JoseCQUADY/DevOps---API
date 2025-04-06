@@ -5,13 +5,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Instalando dependencias...'
-                sh 'npm install'
+                bat 'npm install'
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Desplegando la aplicación...'
-                sh 'npm start'
+                bat 'npm start'
             }
         }
     }

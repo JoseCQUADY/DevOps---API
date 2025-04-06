@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     echo 'Limpiando contenedores y imágenes...'
-                    bat 'docker rm -f $(docker ps -aq)' 
+                    bat 'docker rm -f sicei-app' 
                     bat 'docker rmi -f sicei-app'
                 }
             }

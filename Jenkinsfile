@@ -20,6 +20,15 @@ pipeline {
             }
         }
 
+        stage('Testing'){
+            steps{
+                script{
+                    echo 'Procediendo a las pruebas...'
+                    bat 'curl --silent --fail http://localhost:3000/alumnos || exit 1'
+                }
+            }
+        }
+
         stage('Clean Up') {
             steps {
                 script {
